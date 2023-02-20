@@ -3,19 +3,27 @@ p = [2, 3, 5, 7, 11, 13, 17, 19, 23, 31, 37, 41, 43, 47, 53, 59, 61, 67]
 s = ""
 for i in range(500):
     s += str(p[randrange(len(p))])
-mx_cnt = 0
-h = [0]*90
-for i in range(1, len(s)):
-    h[int(s[i-1:i+1]) - 10] += 1
-print(max(h))
-# Рабин-Карп
-res = 0 
-for a in range(10):
+
+# Наивный
+res = 0
+for a in range(1, 10):
     for b in range(10):
-        t = str(10*a+b)
         cnt = 0
         for i in range(len(s)-1):
-            if t == s[i:i+2]:
+            if str(a) == s[i] and str(b) == s[i+1]:
+                cnt += 1
+        res = max(res, cnt)        
+print(res)
+
+# Рабин-Карп
+res = 0 
+for a in range(1, 10):
+    for b in range(10):
+        num = 10*a+b
+        t = str(num)
+        cnt = 0
+        for i in range(len(s)-1):
+            if num == int(s[i:i+2]) and t == s[i:i+2]:
                 cnt += 1
         res = max(res, cnt)        
 print(res)
@@ -43,6 +51,7 @@ for el in range(10, 100):
         cnt += 1
     res = max(res, cnt)  
 print(res)
+
 # Кнут-Моррис-Прат
 res = 0
 for el in range(10, 100):
@@ -64,5 +73,5 @@ for el in range(10, 100):
             k -= 1
         i += (k-pref[k]+1)
     res = max(res, cnt)    
-print(res)        
+print(res)         
             
