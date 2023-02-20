@@ -16,9 +16,9 @@ for i in range(1, len(wiki_w)-1):
                 t = False
         if t:
             cnt += 1
-print(cnt)
+print("Количество плагиата: " + str(cnt))
 ref_len = 0
 for el in ref_w:
     ref_len += len(el)
-print(ref_len)
-print(100 * cnt / ref_len)
+print("Количество символов в реферате: " + str(ref_len))
+print(str(round(100 * cnt / ref_len)) + "%")
